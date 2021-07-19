@@ -1,3 +1,6 @@
+[![CodeQL](https://github.com/gardian12/ChromeExtensionIdentifier/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/gardian12/ChromeExtensionIdentifier/actions/workflows/codeql-analysis.yml)
+
+
 # ChromeExtensionIdentifier
 
 The **ChromeExtensionIdentifier** retrieves detailed information about a chrome extension only given by ID.
