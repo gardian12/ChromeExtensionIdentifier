@@ -31,35 +31,36 @@ namespace ChromeExtensionIdentifier
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnExit = new System.Windows.Forms.Button();
+            this.BtnExit = new System.Windows.Forms.Button();
             this.groupInput = new System.Windows.Forms.GroupBox();
-            this.tbInput = new System.Windows.Forms.TextBox();
+            this.TextBoxInput = new System.Windows.Forms.TextBox();
             this.groupOutput = new System.Windows.Forms.GroupBox();
-            this.dataOutput = new System.Windows.Forms.DataGridView();
+            this.DataOutput = new System.Windows.Forms.DataGridView();
+            this.BtnClear = new System.Windows.Forms.Button();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnDescr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnLink = new System.Windows.Forms.DataGridViewLinkColumn();
             this.groupInput.SuspendLayout();
             this.groupOutput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataOutput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataOutput)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnExit
+            // BtnExit
             // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Location = new System.Drawing.Point(1398, 540);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 0;
-            this.btnExit.Text = "E&xit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.BtnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnExit.Location = new System.Drawing.Point(1398, 540);
+            this.BtnExit.Name = "BtnExit";
+            this.BtnExit.Size = new System.Drawing.Size(75, 23);
+            this.BtnExit.TabIndex = 0;
+            this.BtnExit.Text = "E&xit";
+            this.BtnExit.UseVisualStyleBackColor = true;
+            this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // groupInput
             // 
             this.groupInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupInput.Controls.Add(this.tbInput);
+            this.groupInput.Controls.Add(this.TextBoxInput);
             this.groupInput.Location = new System.Drawing.Point(12, 12);
             this.groupInput.Name = "groupInput";
             this.groupInput.Size = new System.Drawing.Size(272, 510);
@@ -67,25 +68,25 @@ namespace ChromeExtensionIdentifier
             this.groupInput.TabStop = false;
             this.groupInput.Text = "I&nput";
             // 
-            // tbInput
+            // TextBoxInput
             // 
-            this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TextBoxInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbInput.Location = new System.Drawing.Point(6, 19);
-            this.tbInput.Multiline = true;
-            this.tbInput.Name = "tbInput";
-            this.tbInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbInput.Size = new System.Drawing.Size(260, 485);
-            this.tbInput.TabIndex = 4;
-            this.tbInput.TextChanged += new System.EventHandler(this.tbInput_TextChanged);
+            this.TextBoxInput.Location = new System.Drawing.Point(6, 19);
+            this.TextBoxInput.Multiline = true;
+            this.TextBoxInput.Name = "TextBoxInput";
+            this.TextBoxInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextBoxInput.Size = new System.Drawing.Size(260, 485);
+            this.TextBoxInput.TabIndex = 4;
+            this.TextBoxInput.TextChanged += new System.EventHandler(this.TextBoxInput_TextChanged);
             // 
             // groupOutput
             // 
             this.groupOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupOutput.Controls.Add(this.dataOutput);
+            this.groupOutput.Controls.Add(this.DataOutput);
             this.groupOutput.Location = new System.Drawing.Point(314, 12);
             this.groupOutput.Name = "groupOutput";
             this.groupOutput.Size = new System.Drawing.Size(1159, 510);
@@ -93,25 +94,36 @@ namespace ChromeExtensionIdentifier
             this.groupOutput.TabStop = false;
             this.groupOutput.Text = "O&utput";
             // 
-            // dataOutput
+            // DataOutput
             // 
-            this.dataOutput.AllowUserToAddRows = false;
-            this.dataOutput.AllowUserToDeleteRows = false;
-            this.dataOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DataOutput.AllowUserToAddRows = false;
+            this.DataOutput.AllowUserToDeleteRows = false;
+            this.DataOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DataOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnName,
             this.columnDescr,
             this.columnLink});
-            this.dataOutput.Location = new System.Drawing.Point(6, 19);
-            this.dataOutput.Name = "dataOutput";
-            this.dataOutput.ReadOnly = true;
-            this.dataOutput.RowHeadersVisible = false;
-            this.dataOutput.Size = new System.Drawing.Size(1147, 485);
-            this.dataOutput.TabIndex = 5;
-            this.dataOutput.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataOutput_CellContentClick);
+            this.DataOutput.Location = new System.Drawing.Point(6, 19);
+            this.DataOutput.Name = "DataOutput";
+            this.DataOutput.ReadOnly = true;
+            this.DataOutput.RowHeadersVisible = false;
+            this.DataOutput.Size = new System.Drawing.Size(1147, 485);
+            this.DataOutput.TabIndex = 5;
+            this.DataOutput.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataOutput_CellContentClick);
+            // 
+            // BtnClear
+            // 
+            this.BtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnClear.Location = new System.Drawing.Point(203, 540);
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(75, 23);
+            this.BtnClear.TabIndex = 5;
+            this.BtnClear.Text = "Clea&r";
+            this.BtnClear.UseVisualStyleBackColor = true;
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // columnName
             // 
@@ -144,26 +156,28 @@ namespace ChromeExtensionIdentifier
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1485, 575);
+            this.Controls.Add(this.BtnClear);
             this.Controls.Add(this.groupOutput);
             this.Controls.Add(this.groupInput);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.BtnExit);
             this.Name = "frmMain";
             this.Text = "Chrome Extension Identifier";
             this.groupInput.ResumeLayout(false);
             this.groupInput.PerformLayout();
             this.groupOutput.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataOutput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataOutput)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.GroupBox groupInput;
-        private System.Windows.Forms.TextBox tbInput;
+        private System.Windows.Forms.TextBox TextBoxInput;
         private System.Windows.Forms.GroupBox groupOutput;
-        private System.Windows.Forms.DataGridView dataOutput;
+        private System.Windows.Forms.DataGridView DataOutput;
+        private Button BtnClear;
         private DataGridViewTextBoxColumn columnName;
         private DataGridViewTextBoxColumn columnDescr;
         private DataGridViewLinkColumn columnLink;

@@ -14,16 +14,16 @@ namespace ChromeExtensionIdentifier
             InitializeComponent();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void BtnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void tbInput_TextChanged(object sender, EventArgs e)
+        private void TextBoxInput_TextChanged(object sender, EventArgs e)
         {
             List<string> cleaned = new List<string>();
 
-            string[] subs = tbInput.Text.Split('\n');
+            string[] subs = TextBoxInput.Text.Split('\n');
             foreach (var sub in subs)
             {
                 cleaned.Add(sub.Trim('\r', ' '));
@@ -35,7 +35,7 @@ namespace ChromeExtensionIdentifier
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
-            dataOutput.Rows.Clear();
+            DataOutput.Rows.Clear();
 
             foreach (var id in cleaned)
             {
@@ -99,18 +99,18 @@ namespace ChromeExtensionIdentifier
                     row.Add(descr);
                     row.Add(link);
 
-                    dataOutput.Rows.Add(row.ToArray());
+                    DataOutput.Rows.Add(row.ToArray());
                 }
             }
         }
 
-        private void dataOutput_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataOutput_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 if (e.ColumnIndex == 2)
                 {
-                    var row = dataOutput.Rows[e.RowIndex];
+                    var row = DataOutput.Rows[e.RowIndex];
                     if (row.Cells[2].Value == null) return;
                     var url = row.Cells[2].Value.ToString();
                     System.Diagnostics.Process.Start(url);
@@ -168,5 +168,10 @@ namespace ChromeExtensionIdentifier
         }
 
         #endregion Proxy Configuration
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            TextBoxInput.Clear();
+        }
     }
 }
