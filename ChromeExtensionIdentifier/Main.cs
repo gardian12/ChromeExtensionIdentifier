@@ -9,9 +9,12 @@ namespace ChromeExtensionIdentifier
 {
     public partial class frmMain : Form
     {
+
         public frmMain()
         {
             InitializeComponent();
+
+            CheckBoxShowID_CheckedChanged(this, EventArgs.Empty);
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -23,18 +26,24 @@ namespace ChromeExtensionIdentifier
         {
             List<string> cleaned = new List<string>();
 
-            string[] subs = TextBoxInput.Text.Split('\n');
+            //allow different separator character
+            char[] charSeparators = new char[] { '\n', ',', ';' };
+            string[] subs = TextBoxInput.Text.Split(charSeparators, StringSplitOptions.RemoveEmptyEntries);
             foreach (var sub in subs)
             {
                 cleaned.Add(sub.Trim('\r', ' '));
             }
 
+
+            //basic URL of Chrome Web Store
             string tnaddress = "https://chrome.google.com/webstore/detail/";
 
             //added for SSL support
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
+
+            //clear output component
             DataOutput.Rows.Clear();
 
             foreach (var id in cleaned)
@@ -54,7 +63,7 @@ namespace ChromeExtensionIdentifier
                         string address = tnaddress + id;
                         string response = wcl.DownloadString(address);
 
-                        //Get all HTML metatag values
+                        //get HTML metatag values
                         Regex metaTag = new Regex("<meta property=\"(.+?)\" content=\"(.+?)\">");
                         Dictionary<string, string> metaInformation = new Dictionary<string, string>();
                         foreach (Match m in metaTag.Matches(response))
@@ -95,6 +104,8 @@ namespace ChromeExtensionIdentifier
                         }
                     }
 
+                    //fill cells per row
+                    row.Add(id);
                     row.Add(result);
                     row.Add(descr);
                     row.Add(link);
@@ -108,11 +119,14 @@ namespace ChromeExtensionIdentifier
         {
             try
             {
-                if (e.ColumnIndex == 2)
+                //start browser when cell with URL was clicked
+                if (e.ColumnIndex == this.ColumnLink.DisplayIndex)
                 {
                     var row = DataOutput.Rows[e.RowIndex];
-                    if (row.Cells[2].Value == null) return;
-                    var url = row.Cells[2].Value.ToString();
+                    if (row.Cells[this.ColumnLink.DisplayIndex].Value == null) return;
+                    var url = row.Cells[this.ColumnLink.DisplayIndex].Value.ToString();
+
+                    //start browser
                     System.Diagnostics.Process.Start(url);
                 }
             }
@@ -121,6 +135,17 @@ namespace ChromeExtensionIdentifier
                 MessageBox.Show("Storage path error, please check if the path is correct");
             }
         }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            //clear input component
+            TextBoxInput.Clear();
+        }
+        private void CheckBoxShowID_CheckedChanged(object sender, EventArgs e)
+        {
+                DataOutput.Columns[this.ColumnID.Name].Visible = CheckBoxShowID.Checked;
+        }
+
 
         #region Proxy Configuration
 
@@ -169,9 +194,5 @@ namespace ChromeExtensionIdentifier
 
         #endregion Proxy Configuration
 
-        private void BtnClear_Click(object sender, EventArgs e)
-        {
-            TextBoxInput.Clear();
-        }
     }
 }
